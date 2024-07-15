@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .letter {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Letter Generator</h1>
+        <div class="form-group">
+            <label for="senderName">Your Name</label>
+            <input type="text" id="senderName">
+        </div>
+        <div class="form-group">
+            <label for="recipientName">This letter to be sent to</label>
+            <input type="text" id="recipientName">
+        </div>
+        <div class="form-group">
+            <label for="background">Choose a background</label>
+            <select id="background">
+                <option value="white">White</option>
+                <option value="lightyellow">Light Yellow</option>
+                <option value="lightblue">Light Blue</option>
+                <option value="lightgreen">Light Green</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="fontStyle">Font Style</label>
+            <select id="fontStyle">
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Verdana">Verdana</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="width">Adjust Width (px)</label>
+            <input type="number" id="width" placeholder="e.g., 600">
+        </div>
+        <div class="form-group">
+            <label for="height">Adjust Height (px)</label>
+            <input type="number" id="height" placeholder="e.g., 400">
+        </div>
+        <div class="form-group">
+            <label for="letterContent">What would you like to say?</label>
+            <textarea id="letterContent" rows="10"></textarea>
+        </div>
+        <button onclick="generateLetter()">Show Letter</button>
+        <div id="letter" class="letter"></div>
+    </div>
+
+    <script>
+        function generateLetter() {
+            const senderName = document.getElementById('senderName').value;
+            const recipientName = document.getElementById('recipientName').value;
+            const letterContent = document.getElementById('letterContent').value;
+            const background = document.getElementById('background').value;
+            const fontStyle = document.getElementById('fontStyle').value;
+            const width = document.getElementById('width').value;
+            const height = document.getElementById('height').value;
+
+            const letter = `
+                <p>Dear ${recipientName},</p>
+                <p>${letterContent}</p>
+                <p>Sincerely,</p>
+                <p>${senderName}</p>
+            `;
+
+            const letterDiv = document.getElementById('letter');
+            letterDiv.innerHTML = letter;
+            letterDiv.style.backgroundColor = background;
+            letterDiv.style.fontFamily = fontStyle;
+            letterDiv.style.width = width ? width + 'px' : 'auto';
+            letterDiv.style.height = height ? height + 'px' : 'auto';
+        }
+    </script>
+</body>
+</html>
